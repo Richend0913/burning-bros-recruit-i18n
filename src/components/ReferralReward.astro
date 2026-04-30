@@ -1,0 +1,42 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const rr = t.referral || {};
+---
+
+<section class="py-20 md:py-32 bg-[#ffc700] text-[#0a0906] relative overflow-hidden">
+  <div class="absolute pointer-events-none font-['Archivo_Black'] text-[180px] text-[#0a0906]/[0.05] leading-none whitespace-nowrap" style="top: 40px; left: 0;">REFERRAL &times; REFERRAL &times; REFERRAL</div>
+
+  <div class="max-w-5xl mx-auto px-4 md:px-7 relative z-10">
+    <div class="inline-flex items-center gap-2.5 font-mono text-xs text-[#0a0906] tracking-widest mb-5">
+      <span class="w-8 h-0.5 bg-[#0a0906]"></span>
+      {rr.tag || 'REFERRAL REWARD'}
+    </div>
+
+    <div class="grid md:grid-cols-[1fr_auto] gap-10 items-end mb-14">
+      <h2 class="font-['Archivo_Black'] text-3xl md:text-5xl leading-tight">
+        {rr.headline || 'Bring a friend, earn more'}
+      </h2>
+      <p class="text-sm leading-7 max-w-sm">
+        {rr.description || 'Introduce someone to BURNING BROS. and earn residual income from their deliveries.'}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-0.5 bg-[#0a0906] border-2 border-[#0a0906]">
+      <div class="bg-[#ffc700] p-10 md:p-12">
+        <div class="inline-block bg-[#0a0906] text-[#ffc700] px-3 py-1 font-mono text-xs tracking-widest mb-4">{rr.intro_tag || 'INTRODUCE'}</div>
+        <div class="font-['Archivo_Black'] text-5xl md:text-7xl text-[#0a0906] leading-none mb-2">
+          &yen;{rr.intro_amount || '20'}
+        </div>
+        <p class="text-sm">{rr.intro_unit || 'per package your referral delivers'}</p>
+      </div>
+      <div class="bg-[#ffc700] p-10 md:p-12">
+        <div class="inline-block bg-[#0a0906] text-[#ffc700] px-3 py-1 font-mono text-xs tracking-widest mb-4">{rr.example_tag || 'EXAMPLE'}</div>
+        <div class="font-['Archivo_Black'] text-4xl md:text-5xl text-[#ff2d00] leading-none mb-2">
+          &yen;{rr.example_amount || '120,000'}
+        </div>
+        <p class="text-sm leading-7">{rr.example_calc || '3 referrals x 200 pkg/day x 20 yen x 30 days = 120,000/mo'}</p>
+      </div>
+    </div>
+  </div>
+</section>

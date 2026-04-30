@@ -1,0 +1,52 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const inc = t.income || {};
+const layers = inc.layers || [
+  { tag: 'LAYER 01', title: 'PIECE', subtitle: 'Per-package pay', amount: '143', unit: 'yen/pkg', desc: 'Earn for every package delivered. The more you deliver, the more you earn.' },
+  { tag: 'LAYER 02', title: 'ROLE', subtitle: 'Leadership bonus', amount: '50,000', unit: 'yen/mo', desc: 'Become a team leader and earn a monthly management bonus on top of piece pay.' },
+  { tag: 'LAYER 03', title: 'RESIDUAL', subtitle: 'Referral income', amount: '20', unit: 'yen/pkg', desc: 'Earn a residual from every package your referrals deliver. Build a team, build passive income.' },
+];
+---
+
+<section class="py-20 md:py-32 bg-[#0a0906] text-[#f3ece0] relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none font-['Archivo_Black'] text-[200px] md:text-[280px] text-[#ff2d00]/[0.06] leading-none tracking-tighter" style="top: 40px; right: -60px;">INCOME</div>
+
+  <div class="max-w-5xl mx-auto px-4 md:px-7 relative z-10">
+    <div class="inline-flex items-center gap-2.5 font-mono text-xs text-[#ffc700] tracking-widest mb-5">
+      <span class="w-8 h-0.5 bg-[#ffc700]"></span>
+      {inc.tag || 'INCOME STRUCTURE'}
+    </div>
+    <h2 class="font-['Archivo_Black'] text-3xl md:text-5xl text-[#f3ece0] leading-tight mb-4">
+      {inc.headline || '3 layers of income'}
+    </h2>
+    <p class="text-[#b8b0a4] text-base max-w-xl mb-14">
+      {inc.description || 'Not just per-delivery pay. Stack three income layers to maximize your earnings.'}
+    </p>
+
+    <div class="flex flex-col gap-0">
+      {layers.map((layer: any, i: number) => (
+        <>
+          {i > 0 && (
+            <div class="text-center py-2">
+              <span class="font-['Archivo_Black'] text-3xl text-[#ff2d00]">+</span>
+            </div>
+          )}
+          <div class="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] border-2 border-[#ff2d00] bg-[#2a2520] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform overflow-hidden">
+            <div class="bg-[#ff2d00] flex items-center justify-center p-6">
+              <div class="font-['Archivo_Black'] text-3xl text-[#f3ece0] text-center leading-none">{layer.title}</div>
+            </div>
+            <div class="p-6 md:p-8">
+              <div class="font-mono text-xs text-[#ffc700] tracking-widest mb-2">{layer.tag}</div>
+              <h3 class="text-xl md:text-2xl font-bold text-[#f3ece0] mb-2">{layer.subtitle}</h3>
+              <div class="font-mono text-sm text-[#ffc700] mb-3">
+                <span class="bg-[#ffc700]/10 px-2 py-0.5 border border-[#ffc700]/30">&yen;{layer.amount} {layer.unit}</span>
+              </div>
+              <p class="text-sm text-[#b8b0a4] leading-7">{layer.desc}</p>
+            </div>
+          </div>
+        </>
+      ))}
+    </div>
+  </div>
+</section>

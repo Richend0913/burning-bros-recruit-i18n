@@ -1,0 +1,31 @@
+---
+// Root page - redirects to the appropriate language version
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BURNING BROS. | Redirecting...</title>
+  <script is:inline>
+    (function() {
+      const langMap = {
+        'vi': 'vi',
+        'ne': 'ne',
+        'id': 'id',
+        'ja': 'ja-easy',
+      };
+      const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      const primary = browserLang.split('-')[0];
+      const target = langMap[primary] || 'en';
+      window.location.replace('/' + target + '/');
+    })();
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/en/" />
+  </noscript>
+</head>
+<body style="background: #0a0906; color: #f3ece0; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; font-family: sans-serif;">
+  <p>Redirecting...</p>
+</body>
+</html>

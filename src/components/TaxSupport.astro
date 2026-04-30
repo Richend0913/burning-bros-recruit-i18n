@@ -1,0 +1,32 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const tax = t.tax || {};
+---
+
+<section class="py-16 md:py-24 bg-[#e8dfcc] border-y border-[#0a0906]/10">
+  <div class="max-w-5xl mx-auto px-4 md:px-7">
+    <div class="grid md:grid-cols-[auto_1fr] gap-8 items-center">
+      <div class="w-16 h-16 md:w-20 md:h-20 bg-[#0a0906] text-[#ffc700] flex items-center justify-center text-3xl md:text-4xl flex-shrink-0">
+        &#128203;
+      </div>
+      <div>
+        <div class="inline-flex items-center gap-2.5 font-mono text-xs text-[#ff2d00] tracking-widest mb-3">
+          <span class="w-8 h-0.5 bg-[#ff2d00]"></span>
+          {tax.tag || 'TAX SUPPORT'}
+        </div>
+        <h2 class="font-['Archivo_Black'] text-2xl md:text-3xl leading-tight mb-3">
+          {tax.headline || 'Tax filing made easy'}
+        </h2>
+        <p class="text-[#2a2520] text-base leading-7 max-w-2xl">
+          {tax.description || 'As an independent contractor, you need to file taxes in Japan. We connect you with tax advisors who speak your language and help you through the entire process.'}
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          {(tax.points || ['Annual filing help', 'Expense tracking tips', 'Multilingual advisors']).map((point: string) => (
+            <span class="bg-[#0a0906] text-[#f3ece0] px-4 py-2 text-sm font-bold">{point}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

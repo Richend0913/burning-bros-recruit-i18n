@@ -1,0 +1,24 @@
+---
+import LangSwitcher from './LangSwitcher.astro';
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 px-4 md:px-7 py-4 flex justify-between items-center bg-[#0a0906]/[0.92] backdrop-blur-sm border-b border-[#f3ece0]/[0.08]">
+  <a href={`/${lang}/`} class="flex items-center gap-2.5 text-[#f3ece0] no-underline">
+    <span class="inline-block w-5 h-5 bg-[#ff2d00]" style="clip-path: polygon(50% 0, 100% 40%, 85% 100%, 15% 100%, 0 40%);"></span>
+    <span class="font-['Archivo_Black'] text-lg tracking-wide">BURNING BROS.</span>
+  </a>
+
+  <div class="flex items-center gap-3">
+    <LangSwitcher t={t} lang={lang} />
+    <a
+      href="https://lin.ee/8rR88pb"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hidden sm:inline-block bg-[#ff2d00] text-[#f3ece0] px-5 py-2.5 font-black text-sm tracking-wider hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform shadow-[4px_4px_0_#f3ece0] hover:shadow-[6px_6px_0_#f3ece0]"
+    >
+      {t.nav?.cta || 'LINE Chat'}
+    </a>
+  </div>
+</nav>

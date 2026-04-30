@@ -1,0 +1,52 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const jl = t.japanese || {};
+const checks = jl.checkpoints || [
+  'Read delivery address in Japanese',
+  'Say "I have a delivery" at the door',
+  'Understand "leave it at the door, please"',
+  'Call the customer: "Hello, this is the delivery driver"',
+  'Report to base: "Delivery complete / Re-delivery needed"',
+];
+---
+
+<section class="py-20 md:py-32 bg-[#f3ece0]">
+  <div class="max-w-5xl mx-auto px-4 md:px-7">
+    <div class="inline-flex items-center gap-2.5 font-mono text-xs text-[#ff2d00] tracking-widest mb-5">
+      <span class="w-8 h-0.5 bg-[#ff2d00]"></span>
+      {jl.tag || 'JAPANESE LEVEL'}
+    </div>
+    <h2 class="font-['Archivo_Black'] text-3xl md:text-5xl leading-tight mb-4">
+      {jl.headline || 'How much Japanese do I need?'}
+    </h2>
+    <p class="text-[#2a2520] text-base mb-10 max-w-xl">
+      {jl.description || 'You do not need JLPT. Just check these 5 practical skills.'}
+    </p>
+
+    <div class="max-w-2xl space-y-3">
+      {checks.map((check: string, i: number) => (
+        <div class="flex items-start gap-4 p-4 border-2 border-[#0a0906] bg-[#f3ece0] hover:bg-[#e8dfcc] transition-colors">
+          <div class="flex-shrink-0 w-8 h-8 bg-[#0a0906] text-[#ffc700] flex items-center justify-center font-['Archivo_Black'] text-sm">
+            {i + 1}
+          </div>
+          <span class="text-base font-bold pt-1">{check}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-8 p-5 bg-[#0a0906] text-[#f3ece0] max-w-2xl">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <span class="text-base">{jl.cta_text || 'Not sure? Test your level on LINE'}</span>
+        <a
+          href="https://lin.ee/8rR88pb"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-[#ff2d00] text-[#f3ece0] px-5 py-2.5 font-black text-sm tracking-wider hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform shadow-[3px_3px_0_#ffc700] hover:shadow-[5px_5px_0_#ffc700]"
+        >
+          {jl.cta_button || 'LINE Chat'}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

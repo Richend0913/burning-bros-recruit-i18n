@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getTranslation, languages } from '../../i18n/utils';
+
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import HousingSupport from '../../components/HousingSupport.astro';
+import VisaCheck from '../../components/VisaCheck.astro';
+import IncomeLayers from '../../components/IncomeLayers.astro';
+import DailyFlow from '../../components/DailyFlow.astro';
+import ReferralReward from '../../components/ReferralReward.astro';
+import CareerPath from '../../components/CareerPath.astro';
+import AreaMap from '../../components/AreaMap.astro';
+import IncomeSimulator from '../../components/IncomeSimulator.astro';
+import JapaneseLevel from '../../components/JapaneseLevel.astro';
+import TaxSupport from '../../components/TaxSupport.astro';
+import DriverNetwork from '../../components/DriverNetwork.astro';
+import FAQ from '../../components/FAQ.astro';
+import LineCTA from '../../components/LineCTA.astro';
+import Footer from '../../components/Footer.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'vi' } },
+    { params: { lang: 'ne' } },
+    { params: { lang: 'id' } },
+    { params: { lang: 'ja-easy' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = getTranslation(lang as string);
+const meta = t.meta || {};
+---
+
+<Layout
+  title={meta.title || 'BURNING BROS. | Delivery Driver Recruitment'}
+  description={meta.description || 'Join BURNING BROS. as a delivery driver in Tokyo & Kanagawa.'}
+  lang={lang}
+>
+  <Nav t={t} lang={lang as string} />
+  <Hero t={t} lang={lang as string} />
+  <HousingSupport t={t} lang={lang as string} />
+  <VisaCheck t={t} lang={lang as string} />
+  <IncomeLayers t={t} lang={lang as string} />
+  <DailyFlow t={t} lang={lang as string} />
+  <ReferralReward t={t} lang={lang as string} />
+  <CareerPath t={t} lang={lang as string} />
+  <AreaMap t={t} lang={lang as string} />
+  <IncomeSimulator t={t} lang={lang as string} />
+  <JapaneseLevel t={t} lang={lang as string} />
+  <TaxSupport t={t} lang={lang as string} />
+  <DriverNetwork t={t} lang={lang as string} />
+  <FAQ t={t} lang={lang as string} />
+  <LineCTA t={t} lang={lang as string} />
+  <Footer t={t} lang={lang as string} />
+</Layout>

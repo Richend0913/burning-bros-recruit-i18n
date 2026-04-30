@@ -1,0 +1,75 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const hero = t.hero || {};
+---
+
+<section class="min-h-screen bg-[#0a0906] text-[#f3ece0] relative pt-28 pb-10 px-4 md:px-7 overflow-hidden">
+  <!-- Grid background -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(to right, rgba(243,236,224,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,236,224,0.04) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10 mt-10 md:mt-16">
+    <!-- Kicker -->
+    <div class="inline-flex items-center gap-3 font-mono text-xs text-[#ffc700] border border-[#ffc700] px-3 py-1.5 mb-9">
+      <span class="w-2 h-2 rounded-full bg-[#ff2d00] animate-pulse"></span>
+      <span>{hero.kicker || 'NOW HIRING DRIVERS'}</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="font-['Archivo_Black'] text-5xl md:text-7xl lg:text-[120px] leading-[0.92] tracking-tight mb-6">
+      <span class="block">{hero.headline_1 || 'DELIVER.'}</span>
+      <span class="block text-[#ff2d00]">{hero.headline_2 || 'EARN.'}</span>
+      <span class="block">{hero.headline_3 || 'GROW.'}</span>
+    </h1>
+
+    <!-- Sub section -->
+    <div class="mt-12 pt-8 border-t border-[#f3ece0]/[0.18] grid md:grid-cols-[1fr_auto] gap-10 items-end">
+      <div class="max-w-lg text-base leading-8">
+        <p>{hero.lead || 'Join BURNING BROS. as a delivery driver in Tokyo & Kanagawa. Earn per package with three income layers.'}</p>
+      </div>
+
+      <div class="text-right">
+        <div class="font-mono text-xs text-[#6b635a] tracking-widest mb-1">{hero.stat_label || 'PER PACKAGE'}</div>
+        <div class="font-['Archivo_Black'] text-5xl md:text-7xl text-[#ff2d00] leading-none tracking-tight">
+          <sup class="text-[0.4em] text-[#f3ece0] align-top mr-1">&yen;</sup>{hero.stat_value || '143'}<sub class="text-[0.28em] text-[#f3ece0] align-baseline ml-1.5 font-sans font-black">{hero.stat_unit || '~'}</sub>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 flex flex-col sm:flex-row gap-4 items-start">
+      <a
+        href="https://lin.ee/8rR88pb"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block bg-[#ff2d00] text-[#f3ece0] px-8 py-4 font-black text-lg tracking-wider hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform shadow-[4px_4px_0_#f3ece0] hover:shadow-[6px_6px_0_#f3ece0]"
+      >
+        {hero.cta || 'Chat on LINE'}
+      </a>
+      <a href="tel:080-8956-0913" class="text-[#f3ece0] font-mono text-sm hover:text-[#ffc700] transition-colors">
+        TEL: 080-8956-0913
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="bg-[#ff2d00] text-[#f3ece0] py-3.5 overflow-hidden border-y border-[#0a0906]">
+  <div class="flex gap-12 whitespace-nowrap animate-[scroll_28s_linear_infinite] font-black text-base tracking-wider">
+    {Array(3).fill(null).map(() => (
+      <>
+        <span class="inline-flex items-center gap-3">{hero.ticker_1 || 'No experience needed'}<span class="text-[#ffc700] text-sm">&#9733;</span></span>
+        <span class="inline-flex items-center gap-3">{hero.ticker_2 || 'Housing support'}<span class="text-[#ffc700] text-sm">&#9733;</span></span>
+        <span class="inline-flex items-center gap-3">{hero.ticker_3 || 'Visa consultation'}<span class="text-[#ffc700] text-sm">&#9733;</span></span>
+        <span class="inline-flex items-center gap-3">{hero.ticker_4 || 'Multilingual support'}<span class="text-[#ffc700] text-sm">&#9733;</span></span>
+      </>
+    ))}
+  </div>
+</div>
+
+<style>
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>

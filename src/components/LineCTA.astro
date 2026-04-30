@@ -1,0 +1,38 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const cta = t.cta || {};
+---
+
+<section class="py-20 md:py-32 bg-[#0a0906] text-[#f3ece0] relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(to right, rgba(243,236,224,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,236,224,0.04) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+  <div class="max-w-3xl mx-auto px-4 md:px-7 text-center relative z-10">
+    <div class="font-mono text-xs text-[#ffc700] tracking-widest mb-6">{cta.tag || 'GET STARTED'}</div>
+
+    <h2 class="font-['Archivo_Black'] text-4xl md:text-6xl leading-tight mb-6">
+      {cta.headline || 'Ready to drive?'}
+    </h2>
+
+    <p class="text-[#b8b0a4] text-base md:text-lg mb-10 max-w-lg mx-auto leading-relaxed">
+      {cta.description || 'Send us a message on LINE. We reply in your language.'}
+    </p>
+
+    <a
+      href="https://lin.ee/8rR88pb"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block bg-[#ff2d00] text-[#f3ece0] px-10 py-5 font-black text-xl tracking-wider hover:-translate-x-1 hover:-translate-y-1 transition-transform shadow-[6px_6px_0_#ffc700] hover:shadow-[8px_8px_0_#ffc700] mb-6"
+    >
+      {cta.button || 'Chat on LINE'}
+    </a>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
+      <a href="tel:080-8956-0913" class="text-[#f3ece0] font-mono hover:text-[#ffc700] transition-colors">
+        TEL: 080-8956-0913
+      </a>
+      <span class="hidden sm:inline text-[#6b635a]">|</span>
+      <span class="text-[#6b635a]">{cta.hours || 'Mon-Sat 9:00-18:00'}</span>
+    </div>
+  </div>
+</section>

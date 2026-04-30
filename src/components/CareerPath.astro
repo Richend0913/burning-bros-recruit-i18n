@@ -1,0 +1,42 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const cp = t.career || {};
+const steps = cp.steps || [
+  { marker: 'STEP 01', when: 'DAY 1', title: 'Driver', desc: 'Start delivering. Learn the routes, build speed.' },
+  { marker: 'STEP 02', when: '6 MO', title: 'Leader', desc: 'Manage a small team. Earn leadership bonus.' },
+  { marker: 'STEP 03', when: '1 YR', title: 'Manager', desc: 'Oversee multiple teams and areas.' },
+  { marker: 'STEP 04', when: '2 YR+', title: 'Owner', desc: 'Run your own delivery operation.' },
+];
+---
+
+<section class="py-20 md:py-32 bg-[#0a0906] text-[#f3ece0] relative overflow-hidden">
+  <div class="absolute pointer-events-none font-['Archivo_Black'] text-[240px] text-[#ff2d00]/[0.06] leading-none tracking-tighter" style="top: -30px; right: -30px;">CAREER</div>
+
+  <div class="max-w-5xl mx-auto px-4 md:px-7 relative z-10">
+    <div class="inline-flex items-center gap-2.5 font-mono text-xs text-[#ffc700] tracking-widest mb-5">
+      <span class="w-8 h-0.5 bg-[#ffc700]"></span>
+      {cp.tag || 'CAREER PATH'}
+    </div>
+    <h2 class="font-['Archivo_Black'] text-3xl md:text-5xl text-[#f3ece0] leading-tight mb-4">
+      {cp.headline || 'From driver to owner'}
+    </h2>
+    <p class="text-[#b8b0a4] text-base max-w-xl mb-14 leading-8">
+      {cp.description || 'Your career does not stop at driving. Grow with us.'}
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-0.5 bg-[#ff2d00] border-2 border-[#ff2d00]">
+      {steps.map((step: any, i: number) => (
+        <div class="bg-[#0a0906] p-7 relative">
+          <div class="font-mono text-xs text-[#ffc700] tracking-widest mb-4">{step.marker}</div>
+          <div class="font-['Archivo_Black'] text-2xl text-[#ff2d00] leading-none mb-2">{step.when}</div>
+          <h3 class="text-xl font-bold text-[#f3ece0] mb-3 pb-3 border-b border-dashed border-[#f3ece0]/20">{step.title}</h3>
+          <p class="text-sm text-[#b8b0a4] leading-7">{step.desc}</p>
+          {i < steps.length - 1 && (
+            <div class="hidden lg:block absolute top-1/2 -right-3.5 -translate-y-1/2 w-7 h-7 bg-[#ff2d00] z-10" style="clip-path: polygon(0 0, 100% 50%, 0 100%, 30% 50%);"></div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

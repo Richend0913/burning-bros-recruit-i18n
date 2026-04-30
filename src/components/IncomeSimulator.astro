@@ -1,0 +1,43 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const sim = t.simulator || {};
+const scenarios = sim.scenarios || [
+  { label: 'WEEKEND ONLY', tag: 'Weekends & holidays', calc: '100 pkg x 2 days x 4 weeks', amount: '114,400', unit: 'yen/mo' },
+  { label: 'FULL-TIME', tag: '5 days a week', calc: '180 pkg x 22 days', amount: '565,400', unit: 'yen/mo' },
+  { label: 'HUSTLE MODE', tag: '6 days, team leader', calc: '200 pkg x 26 days + role bonus', amount: '794,800', unit: 'yen/mo' },
+];
+---
+
+<section class="py-20 md:py-32 bg-[#0a0906] text-[#f3ece0]">
+  <div class="max-w-5xl mx-auto px-4 md:px-7">
+    <div class="inline-flex items-center gap-2.5 font-mono text-xs text-[#ffc700] tracking-widest mb-5">
+      <span class="w-8 h-0.5 bg-[#ffc700]"></span>
+      {sim.tag || 'INCOME SIMULATOR'}
+    </div>
+    <h2 class="font-['Archivo_Black'] text-3xl md:text-5xl text-[#f3ece0] leading-tight mb-4">
+      {sim.headline || 'How much can you earn?'}
+    </h2>
+    <p class="text-[#b8b0a4] text-base mb-14 max-w-xl">
+      {sim.description || 'Three scenarios based on real driver data.'}
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-0.5 bg-[#ff2d00] border-2 border-[#ff2d00]">
+      {scenarios.map((s: any) => (
+        <div class="bg-[#0a0906] p-8 text-center">
+          <div class="font-mono text-xs text-[#6b635a] tracking-widest mb-4">{s.label}</div>
+          <h3 class="text-lg font-bold text-[#f3ece0] mb-2">{s.tag}</h3>
+          <p class="text-sm text-[#b8b0a4] mb-4">{s.calc}</p>
+          <div class="font-['Archivo_Black'] text-4xl md:text-5xl text-[#ffc700] leading-none tracking-tight">
+            &yen;{s.amount}
+          </div>
+          <div class="text-sm text-[#f3ece0] font-bold mt-2">{s.unit}</div>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-6 text-center font-mono text-xs text-[#6b635a]">
+      {sim.note || '* Estimates based on piece rate. Actual income varies by area and performance.'}
+    </p>
+  </div>
+</section>

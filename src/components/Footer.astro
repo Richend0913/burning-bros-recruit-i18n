@@ -1,0 +1,37 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const footer = t.footer || {};
+---
+
+<footer class="bg-[#0a0906] text-[#f3ece0] border-t border-[#f3ece0]/10">
+  <div class="max-w-5xl mx-auto px-4 md:px-7 py-12">
+    <div class="grid md:grid-cols-[1fr_auto] gap-8 items-start">
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <span class="inline-block w-5 h-5 bg-[#ff2d00]" style="clip-path: polygon(50% 0, 100% 40%, 85% 100%, 15% 100%, 0 40%);"></span>
+          <span class="font-['Archivo_Black'] text-lg">BURNING BROS.</span>
+        </div>
+        <p class="text-sm text-[#6b635a] leading-7 max-w-md">
+          {footer.company || 'BURNING BROS. Inc. / Delivery partner recruitment'}
+        </p>
+      </div>
+
+      <div class="text-sm text-[#6b635a] space-y-2 md:text-right">
+        <div>
+          <a href="tel:080-8956-0913" class="text-[#f3ece0] hover:text-[#ffc700] transition-colors font-mono">080-8956-0913</a>
+        </div>
+        <div>
+          <a href="https://lin.ee/8rR88pb" target="_blank" rel="noopener noreferrer" class="text-[#f3ece0] hover:text-[#ffc700] transition-colors">LINE</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-[#f3ece0]/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-[#6b635a]">&copy; {new Date().getFullYear()} BURNING BROS. Inc.</p>
+      <div class="flex gap-4 text-xs text-[#6b635a]">
+        <span>{footer.address || 'Tokyo, Japan'}</span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,37 @@
+---
+interface Props { t: any; lang: string; }
+const { t, lang } = Astro.props;
+const dn = t.network || {};
+const items = dn.items || [
+  { num: '01', title: 'Group chat in your language', desc: 'Connect with drivers from your country. Ask questions, share tips.' },
+  { num: '02', title: 'Monthly meetups', desc: 'Regular gatherings to build community and share best practices.' },
+  { num: '03', title: 'Mentor system', desc: 'New drivers get paired with experienced seniors for the first month.' },
+  { num: '04', title: 'Emergency hotline', desc: '24/7 support line for accidents, trouble, or urgent questions.' },
+];
+---
+
+<section class="py-20 md:py-32 bg-[#ff2d00] text-[#f3ece0] relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, transparent 0 60px, rgba(255,255,255,0.04) 60px 61px);"></div>
+
+  <div class="max-w-5xl mx-auto px-4 md:px-7 relative z-10">
+    <div class="inline-flex items-center gap-2.5 font-mono text-xs text-[#ffc700] tracking-widest mb-5">
+      <span class="w-8 h-0.5 bg-[#ffc700]"></span>
+      {dn.tag || 'DRIVER NETWORK'}
+    </div>
+    <h2 class="font-['Archivo_Black'] text-3xl md:text-5xl text-[#f3ece0] leading-tight mb-14">
+      {dn.headline || 'You are not alone'}
+    </h2>
+
+    <div class="grid sm:grid-cols-2 gap-0.5 bg-[#f3ece0] border-2 border-[#f3ece0]">
+      {items.map((item: any) => (
+        <div class="bg-[#ff2d00] p-8 flex gap-5 items-start">
+          <div class="font-['Archivo_Black'] text-3xl text-[#ffc700] leading-none flex-shrink-0">{item.num}</div>
+          <div>
+            <h3 class="text-xl font-bold text-[#f3ece0] mb-2 leading-tight">{item.title}</h3>
+            <p class="text-sm text-[#f3ece0]/90 leading-7">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
